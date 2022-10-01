@@ -5,14 +5,12 @@ on:
       - '**'
 jobs:
   test:
-    strategy:
-      matrix:
-        platform: [ ubuntu-latest, macOS-latest ]
-    name: test/node ${{ matrix.node }}/${{ matrix.platform }}
-    runs-on: ${{ matrix.platform }}
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
     - uses: actions/setup-python@master
+      with:
+        python-version: '3.9'
     - run: pip install -U pip
     - run: pip install poetry
     - run: poetry install
