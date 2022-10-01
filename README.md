@@ -4,9 +4,9 @@ Inspired by [MIT battlecode](https://battlecode.org), BattleAI is an open-source
 
 For now, BattleAI simply run using console.
 
-## Getting Started
+## Prerequisite
 
-TODO
+- python 3.9
 
 ## Contributing
 
