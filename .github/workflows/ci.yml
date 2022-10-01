@@ -6,6 +6,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    environment: production
     steps:
     - uses: actions/checkout@master
     - uses: actions/setup-python@master
@@ -16,7 +17,8 @@ jobs:
     - run: poetry install
     - run: poetry run pytest tests --cov
     - uses: paambaati/codeclimate-action@v3.0.0
-      environment: CI
+      env:
+        CC_TEST_REPORTER_ID: ${{env.CC_TEST_REPORTER_ID}}
       with:
         debug: true
         coverageCommand: poetry run coverage lcov
