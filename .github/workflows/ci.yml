@@ -14,7 +14,7 @@ jobs:
     - run: pip install -U pip
     - run: pip install poetry
     - run: poetry install
-    - run: pytest tests --cov
+    - run: poetry run pytest tests --cov
   report:
     needs: [ test ]
     name: report
@@ -24,4 +24,4 @@ jobs:
       env:
         CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
       with:
-        coverageCommand: coverage report
+        coverageCommand: poetry run coverage report
