@@ -19,4 +19,4 @@ jobs:
       env:
         CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
       with:
-        coverageCommand: poetry run coverage report
+        coverageCommand: poetry run coverage lcov
