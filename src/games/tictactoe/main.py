@@ -1,9 +1,8 @@
-import enum
 from subprocess import run
 from typing import List
 
 import click
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel
 
 
 def generate_map(size) -> List[List]:
