@@ -54,6 +54,17 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
+name = "coverage"
+version = "6.5.0"
+description = "Code coverage measurement for Python"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+toml = ["tomli"]
+
+[[package]]
 name = "iniconfig"
 version = "1.1.1"
 description = "iniconfig: brain-dead simple config-ini parsing"
@@ -199,7 +210,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "191955d01dd18cb3875bb87bf69e128381a9b61cff8f4b40e048eaccdee0cde6"
+content-hash = "dad1ab4c906ffe992c3a5194fee5221de4d70703037a6cc2020dbf1ca477b3d7"
 
 [metadata.files]
 attrs = []
@@ -212,6 +223,7 @@ colorama = [
     {file = "colorama-0.4.5-py2.py3-none-any.whl", hash = "sha256:854bf444933e37f5824ae7bfc1e98d5bce2ebe4160d46b5edf346a89358e99da"},
     {file = "colorama-0.4.5.tar.gz", hash = "sha256:e6c6b4334fc50988a639d9b98aa429a0b57da6e17b9a44f0451f930b6967b7a4"},
 ]
+coverage = []
 iniconfig = [
     {file = "iniconfig-1.1.1-py2.py3-none-any.whl", hash = "sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3"},
     {file = "iniconfig-1.1.1.tar.gz", hash = "sha256:bc3af051d7d14b2ee5ef9969666def0cd1a000e121eaea580d4a313df4b37f32"},
