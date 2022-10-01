@@ -21,6 +21,7 @@ jobs:
   report:
     needs: [ test ]
     name: report
+    runs-on: ubuntu-latest
     steps:
     - uses: paambaati/codeclimate-action@v2.2.4
       env:
