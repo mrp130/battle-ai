@@ -1,0 +1,27 @@
+jobs:
+  install:
+    strategy:
+      matrix:
+        platform: [ ubuntu-latest, macOS-latest ]
+        node: [ '12', '10' ]
+    name: test/node ${{ matrix.node }}/${{ matrix.platform }}
+    runs-on: ${{ matrix.platform }}
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-python@master
+    - run: |
+    pip install -U pip
+    pip install poetry
+    poetry install
+    pytest tests --cov
+  env:
+    POETRY_VIRTUALENVS_CREATE: false
+  test:
+  report:
+    needs: [ test ]
+    name: coverage
+    - uses: paambaati/codeclimate-action@v2.2.4
+      env:
+        CC_TEST_REPORTER_ID: 945dfb58a832d233a3caeb84e3e6d3be212e8c7abcb48117fce63b9adcb43647
+      with:
+        coverageCommand: coverage report
