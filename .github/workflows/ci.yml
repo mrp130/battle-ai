@@ -16,8 +16,7 @@ jobs:
     - run: poetry install
     - run: poetry run pytest tests --cov
     - uses: paambaati/codeclimate-action@v3.0.0
-      env:
-        CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+      environment: CI
       with:
         debug: true
         coverageCommand: poetry run coverage lcov
