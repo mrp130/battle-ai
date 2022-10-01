@@ -1,6 +1,7 @@
 # BattleAI
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/230759cb983b365931c7/maintainability)](https://codeclimate.com/github/mrp130/battle-ai/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/230759cb983b365931c7/test_coverage)](https://codeclimate.com/github/mrp130/battle-ai/test_coverage)
 
 Inspired by [MIT battlecode](https://battlecode.org), BattleAI is an open-source version where developers can contribute new games.
 

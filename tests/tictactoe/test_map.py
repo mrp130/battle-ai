@@ -1,4 +1,4 @@
-from src.games.tictactoe.main import Map, Move
+from src.games.tictactoe.game import Map, Move
 
 
 def test_win_diagonal_left():
