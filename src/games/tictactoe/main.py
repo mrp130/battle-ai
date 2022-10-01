@@ -1,8 +1,8 @@
-import enum
-from typing import List
-from pydantic import BaseModel, validator, Field
-import click
 from subprocess import run
+from typing import List
+
+import click
+from pydantic import BaseModel
 
 
 def generate_map(size) -> List[List]:
@@ -35,23 +35,24 @@ class Map(BaseModel):
             raise ValueError("invalid coordinate: already filled")
         self.game_map[m.row][m.col] = m.player
 
+    def player_char(c: str) -> str:
+        c = "-"
+        if col == 1:
+            c = "X"
+        if col == 2:
+            c = "O"
+
     def print(self):
         for row in self.game_map:
             for col in row:
-                c = "-"
-                if col == 1:
-                    c = "X"
-                if col == 2:
-                    c = "O"
-                print(c, end=" ")
+                print(self.player_char(col), end=" ")
             print("")
         print("")
 
     def is_full(self):
         for row in self.game_map:
-            for col in row:
-                if col == 0:
-                    return False
+            if row.count(0) > 0:
+                return False
         return True
 
     def is_win(self) -> bool:
@@ -63,52 +64,31 @@ class Map(BaseModel):
         )
 
     def check_row(self) -> bool:
-        for i in range(self.size):
-            v = self.game_map[i][0]
-            if v == 0:
-                continue
-            count = 1
-            for j in range(1, self.size):
-                if v != self.game_map[i][j]:
-                    break
-                count += 1
-            if count == self.size:
+        for row in self.game_map:
+            if row.count(1) == self.size or row.count(2) == self.size:
                 return True
+        return False
 
     def check_col(self) -> bool:
         for i in range(self.size):
-            v = self.game_map[0][i]
-            if v == 0:
-                continue
-            count = 1
-            for j in range(1, self.size):
-                if v != self.game_map[j][i]:
-                    break
-                count += 1
-            if count == self.size:
+            temp = []
+            for j in range(self.size):
+                temp.append(self.game_map[j][i])
+            if temp.count(1) == self.size or temp.count(2) == self.size:
                 return True
+        return False
 
     def check_diagonal_left(self) -> bool:
-        v = self.game_map[0][0]
-        if v == 0:
-            return False
-        count = 1
-        for i in range(1, self.size):
-            if v != self.game_map[i][i]:
-                break
-            count += 1
-        return count == self.size
+        temp = []
+        for i in range(self.size):
+            temp.append(self.game_map[i][i])
+        return temp.count(1) == self.size or temp.count(2) == self.size
 
     def check_diagonal_right(self) -> bool:
-        v = self.game_map[0][self.size - 1]
-        if v == 0:
-            return False
-        count = 1
-        for i in range(1, self.size):
-            if v != self.game_map[i][self.size - 1 - i]:
-                break
-            count += 1
-        return count == self.size
+        temp = []
+        for i in range(self.size):
+            temp.append(self.game_map[i][self.size - 1 - i])
+        return temp.count(1) == self.size or temp.count(2) == self.size
 
 
 class Data(BaseModel):
